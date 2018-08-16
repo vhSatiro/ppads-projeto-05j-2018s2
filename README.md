@@ -4,6 +4,7 @@
 ### Integrantes do grupo:
 
 * Bianca Caetano da Silva Martins Franco
+* Fernando de Almeida Siqueira
 * João Victor Cruz Garcia 
 * Matheus Pereira Domingos
 * Vinicius Henrique Reinaldo Sátiro
