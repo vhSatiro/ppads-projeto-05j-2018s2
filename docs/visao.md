@@ -1,12 +1,12 @@
 # Documento de visão
 
-## Nome do projeto: ___________________________________________
+## Nome do projeto: Sistema de controle bibliotecário
 
 ## Principais funcionalidades (o que pessoas/empresas vão conseguir com este software?):
 
-* ______________________________________________________
-* ______________________________________________________
-* ______________________________________________________
+* Gerenciar uma biblioteca
+* Fazer empréstimos de livros
+* Gerenciar multas por atrasos nos empréstimos
 
 ## Como as pessoas/empresas vão usar este software?
 
