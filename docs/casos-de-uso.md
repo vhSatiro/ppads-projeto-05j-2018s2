@@ -8,10 +8,10 @@
 #### Pós-Condições: Reservar um Livro
 ##### Fluxo Principal:
 ###### Ações do Ator:	Ações do Sistema
-2. Seleciona a opção cadastrar
+1. Seleciona a opção cadastrar
  2. O sistema apresenta um formulário com dados do cliente para preencher.
-2. O cliente preenche o formulário corretamente e clica no botão enviar	
- 2. O sistema processa as informações e efetua inclusão no banco de dados.
+3. O cliente preenche o formulário corretamente e clica no botão enviar	
+ 4. O sistema processa as informações e efetua inclusão no banco de dados.
 
 1. CONSULTAR LIVRO
 #### Nome: Caso de Uso - Consultar livro
