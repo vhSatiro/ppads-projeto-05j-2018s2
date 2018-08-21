@@ -41,5 +41,5 @@
 ##### __Ações do Ator__	**Ações do Sistema**
 1. __Administrador pesquisa pelo nome do livro no sistema.__	
 2. **O sistema retorna o livro.**
-3. __Administrador confere a reserva do usuário.
+3. __Administrador confere a reserva do usuário.__
 4. __Caso a reserva esteja feita, o administrador faz o empréstimo no sistema e entrega o livro para o cliente.__
