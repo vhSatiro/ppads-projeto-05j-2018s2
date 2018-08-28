@@ -14,6 +14,12 @@
 2. **O sistema busca na base de dados pelas palavras-chave.**
 3. **O sistema retorna os livros e mostra nas informações a quantidade de livros disponíveis.**
 
+#### Fluxo Alternativo:
+##### __Ações do Ator__ **Ações do Sistema**
+1. __Efetua a pesquisa de um livro.__
+2. **O sistema busca na base de dados pelas palavras-chave.**
+3. **O sistema retorna uma mensagem informando que o livro buscado não foi encontrado.**
+
 ## 2. RESERVAR LIVRO
 ### Nome: Caso de Uso - Reservar livro
 ### Ator Principal: Cliente
