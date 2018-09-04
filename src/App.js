@@ -11,7 +11,7 @@ class App extends Component {
           <h1 className="App-title">Hello World da biblioteca em React</h1>
         </header>
         <p className="App-intro">
-		Biblioteca em React para o trabalho de Prática em ADS, desenvolvido por Bianca, Fernando, João, Matheus e Vinicius!
+		Biblioteca em React para o trabalho de Prática em ADS, desenvolvido por Bianca, Fernando, João, Matheus e Vinicius!!!
         </p>
       </div>
     );
