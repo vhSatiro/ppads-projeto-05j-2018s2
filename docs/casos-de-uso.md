@@ -10,15 +10,17 @@
 * Consulta do estado do livro
 #### Fluxo Principal:
 ##### __Ações do Ator__	**Ações do Sistema**
-1. __Efetua a pesquisa de um livro.__	
-2. **O sistema busca na base de dados pelas palavras-chave.**
-3. **O sistema retorna os livros e mostra nas informações a quantidade de livros disponíveis.**
+1. __Seleciona o tipo de pesquisa (Título, Autor, Assunto)__
+2. __Efetua a pesquisa de um livro.__	
+3. **O sistema busca na base de dados pelas palavras-chave relacionadas ao tipo de pesquisa selecionada.**
+4. **O sistema retorna os livros e mostra nas informações a quantidade de livros disponíveis.**
 
 #### Fluxo Alternativo:
 ##### __Ações do Ator__ **Ações do Sistema**
-1. __Efetua a pesquisa de um livro.__
-2. **O sistema busca na base de dados pelas palavras-chave.**
-3. **O sistema retorna uma mensagem informando que o livro buscado não foi encontrado.**
+1. __Seleciona o tipo de pesquisa (Título, Autor, Assunto)__
+2. __Efetua a pesquisa de um livro.__
+3. **O sistema busca na base de dados pelas palavras-chave relacionadas ao tipo de pesquisa selecionada.**
+4. **O sistema retorna uma mensagem informando que não há livros relacionados à pesquisa.**
 
 ## 2. RESERVAR LIVRO
 ### Nome: Caso de Uso - Reservar livro
