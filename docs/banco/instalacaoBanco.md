@@ -84,3 +84,5 @@ Pronto, o banco de dados está instalado e configurado para uso, para iniciá-lo
 ```
 mongo
 ```
+
+[Fonte: Como instalar o MongoDB no Ubuntu 16.04 - Mateusz Papiernik](https://www.digitalocean.com/community/tutorials/como-instalar-o-mongodb-no-ubuntu-16-04-pt)
