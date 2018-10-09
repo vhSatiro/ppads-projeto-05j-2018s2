@@ -11,8 +11,12 @@ mongoose.connect('mongodb://vini123:vini123@ds159237.mlab.com:59237/node-booksto
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-var port = process.env.port || 4534;
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+})
+var port = process.env.port || 8000;
 
 //Rotas
 
@@ -39,9 +43,8 @@ router.route('/livros')
         livro.genero = req.body.genero;
         livro.descricao = req.body.descricao;
         livro.ano = req.body.ano;
-        livro.status = req.body.sta
-        tus;
         livro.autor = req.body.autor;
+        livro.status = req.body.status;
         livro.save(function (error) {
             if (error) {
                 res.send('Erro ao tentar salvar' + error);
