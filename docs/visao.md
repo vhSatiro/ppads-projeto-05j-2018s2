@@ -19,6 +19,6 @@
 ## Quais linguagens/tecnologias serão utilizadas para implementar este software?
 
 * Back-end em Node JS
-* Front-end em React
+* Front-end em jQuery
 * Banco de dados em MongoDB
 
