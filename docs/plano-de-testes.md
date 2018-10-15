@@ -19,13 +19,6 @@
 
 #### 2. Pesquisar Livro Inexistente
 
-##### **1 Ações do Usuário** **2 Ações do Sistema**
-1. Efetua a pesquisa de um livro: exemplo "**eiufweuihw**".
-2. O sistema deverá retornar todos os livros que possuem no Título o nome ("**eiufweuihw**", por exemplo)
-##### Harry Potter e a Pedra Filosofal
-![Harry Potter e a Pedra Filosofal](https://images.livrariasaraiva.com.br/imagemnet/imagem.aspx/?pro_id=443852&qld=90&l=430&a=-1)
-
-
 
 
 ##### Resumo: Este Teste Simula a pesquisa de um livro feita pelo cliente no nosso sistema no qual não seja encontrado nenhum tipo de referência.
