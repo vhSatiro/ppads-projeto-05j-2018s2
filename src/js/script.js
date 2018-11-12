@@ -3,7 +3,7 @@ $(document).ready(function (e) {
         $('#resultsTable tbody tr').remove();
         var checkedOption = $('[name=optradio]:checked').val();
         var tag = $('[name=searchField]').val();
-        var resp = requestMaker('GET', 'http://localhost:8000/api/livros/?filtro=' + checkedOption + '&tags=' + tag, function (res) {
+        var resp = requestMaker('GET', 'http://35.196.242.0/:4321/api/livros/?filtro=' + checkedOption + '&tags=' + tag, function (res) {
             populateTable(res);
         });
     });

@@ -36,6 +36,23 @@
 1. __Cliente seleciona um livro disponível e escolhe a opção de reservá-lo para empréstimo.__	
 2. **O sistema muda o estado do livro para reservado, salvando junto o nome do cliente.**
 
+#### Fluxo Alternativo - Desistência/Cancelamento da reserva:
+##### __Ações do Ator__ **Ações do Sistema**
+1. __O usuário marca o livro que deseja reservar.__
+2. **O sistema verifica se o usuário possui pendências registradas e se encontra-se apto para realizar a reserva do livro.**
+3. **O sistema não encontra nenhuma pendência registrada.**
+4. **Uma mensagem é mostrada ao usuário pedindo que confirme a reserva.**
+5. __O usuário clica na opção "cancelar reserva".__
+6. **O sistema retorna para a tela com os resultados da pesquisa do livro que o usuário pesquisou.**
+
+#### Fluxo Alternativo - O sistema localiza pendências/irregularidades do usuário:
+##### __Ações do Ator__ **Ações do Sistema**
+1. __O usuário marca o livro que deseja reservar.__
+2. **O sistema verifica se o usuário possui pendências registradas e se encontra-se apto para realizar a reserva do livro.**
+3. **O sistema encontra uma ou mais pendências/irregularidades do usuário, identificando que este não está apto a realizar reservas enquanto não regularizar suas pendências.**
+4. **Uma mensagem é mostrada ao usuário informando que ele não está apto para realizar reservar pois possui pendências registradas, para resolução deve entrar em contato através do e-mail do site.**
+5. **O sistema retorna para a tela com os resultados da pesquisa do livro que o usuário pesquisou.**
+
 ## 3. EMPRÉSTIMO DO LIVRO 
 ### Nome: Caso de Uso - Fazer empréstimo do livro
 ### Ator Principal: Administrador da biblioteca
