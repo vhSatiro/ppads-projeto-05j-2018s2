@@ -65,8 +65,7 @@ router.route('/livros')
                     });
                     break;
                 case 'genero':
-                    var query = Livro.find({ titulo: new RegExp(searchParams, 'i') });
-                    console.log(query);
+                    var query = Livro.find({ genero: new RegExp(searchParams, 'i') });
                     query.exec(function (err, docs) {
                         res.json(docs);
                     });
@@ -86,8 +85,18 @@ router.route('/livros')
                 res.json(livros);
             })
         }
+        if (req.query.reservar) {
+            var query = Livro.update({
+                titulo: new RegExp(searchParams, 'i')
+            }, {
+                    $set: {
+                        status: "R"
+                    }
+                });
+        }
 
     });
+
 
 //Rotas que irão terminar em /livros/:livro_id (GET, PUT E DELETE)
 router.route('/livros/:livro_id')
@@ -100,7 +109,22 @@ router.route('/livros/:livro_id')
             }
             res.json(livro);
         })
-    });
+    })
+    .put(function (req, res) {
+        Livro.findById(req.params.livro_id, function (error, livro) {
+            if (error) {
+                res.send('Id do livro não encontrado:' + error);
+            }
+            livro.status = "R";
+
+            livro.save(function (error) {
+                if(error){
+                    res.send('Erro ao salvar: ' + error);
+                }
+                res.json({message: 'Livro reservado!'});
+            })
+        })
+    })
 app.use('/api', router);
 
 app.listen(port);

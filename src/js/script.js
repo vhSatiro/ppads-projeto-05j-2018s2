@@ -55,8 +55,9 @@ function populateTable(data) {
         );
         var $lastLine = $container.find('tr').last();
         $lastLine.find('button').on('click', function (event) {
-            var nome = $(this).parent().siblings('td.titulo').html();
-            requestMaker('GET', urlGlobal + 'api/livros?reservar=' + nome, function (res) {
+            var id = $(this).parent().siblings('td.bookId').html();
+            requestMaker('PUT', urlGlobal + 'api/livros/' + id, function (res) { 
+                console.log(res);
             })
         })
     }
