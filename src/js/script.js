@@ -1,9 +1,10 @@
+var urlGlobal = 'http://localhost:4321/'
 $(document).ready(function (e) {
     $('#searchButton').on('click', function (event) {
         $('#resultsTable tbody tr').remove();
         var checkedOption = $('[name=optradio]:checked').val();
         var tag = $('[name=searchField]').val();
-        var resp = requestMaker('GET', 'http://35.196.242.0/:4321/api/livros/?filtro=' + checkedOption + '&tags=' + tag, function (res) {
+        requestMaker('GET', urlGlobal + 'api/livros/?filtro=' + checkedOption + '&tags=' + tag, function (res) {
             populateTable(res);
         });
     });
@@ -44,12 +45,19 @@ function populateTable(data) {
         }
         $container.append(
             '<tr>\n\
-            <td>'+ data[i].titulo + '</td>\n\
+            <td class="bookId" style="display:none;">'+ data[i]._id + '</td>\n\
+            <td class="titulo">'+ data[i].titulo + '</td>\n\
             <td>'+ data[i].genero + '</td>\n\
             <td>'+ data[i].descricao + '</td>\n\
             <td>'+ data[i].ano + '</td>\n\
             <td>'+ botaoReservar + '</td>\n\
             </tr>'
         );
+        var $lastLine = $container.find('tr').last();
+        $lastLine.find('button').on('click', function (event) {
+            var nome = $(this).parent().siblings('td.titulo').html();
+            requestMaker('GET', urlGlobal + 'api/livros?reservar=' + nome, function (res) {
+            })
+        })
     }
 }
