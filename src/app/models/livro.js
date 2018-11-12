@@ -6,7 +6,7 @@ var LivroSchema = new Schema({
     genero: String,
     descricao: String,
     ano: String,
-    status: Boolean,
+    status: String,
     autor: String
 });
 

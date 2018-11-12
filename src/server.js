@@ -64,8 +64,9 @@ router.route('/livros')
                         res.json(docs);
                     });
                     break;
-                case 'assunto':
+                case 'genero':
                     var query = Livro.find({ titulo: new RegExp(searchParams, 'i') });
+                    console.log(query);
                     query.exec(function (err, docs) {
                         res.json(docs);
                     });
