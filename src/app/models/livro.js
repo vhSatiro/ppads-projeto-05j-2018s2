@@ -7,7 +7,9 @@ var LivroSchema = new Schema({
     descricao: String,
     ano: String,
     status: String,
-    autor: String
+    autor: String,
+    reservado: String,
+    locador: String
 });
 
 module.exports = mongoose.model('Livro', LivroSchema);
