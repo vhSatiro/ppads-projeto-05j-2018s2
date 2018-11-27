@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Access-Control-Allow-Methods", "PUT");
+    res.header("Access-Control-Allow-Methods", "PUT, POST");
     next();
 })
 var port = process.env.port || 8000;
@@ -48,6 +48,8 @@ router.route('/livros')
         livro.autor = req.body.autor;
         livro.status = req.body.status;
         livro.reservado = "";
+        livro.locador = "";
+
         livro.save(function (error) {
             if (error) {
                 res.send('Erro ao tentar salvar' + error);
@@ -100,7 +102,6 @@ router.route('/livros')
 
     });
 
-
 //Rotas que irão terminar em /livros/:livro_id (GET, PUT E DELETE)
 router.route('/livros/:livro_id')
     //Selecionar por ID
@@ -114,19 +115,39 @@ router.route('/livros/:livro_id')
         })
     })
     .put(function (req, res) {
-        Livro.findById(req.params.livro_id, function (error, livro) {
-            if (error) {
-                res.send('Id do livro não encontrado:' + error);
-            }
-            livro.status = "R";
-            livro.reservado = req.body.usuario;
-            livro.save(function (error) {
+        if (req.body.usuario == "admin") {
+            Livro.findById(req.params.livro_id, function (error, livro) {
                 if (error) {
-                    res.send('Erro ao salvar: ' + error);
+                    res.send('Id do livro não encontrado:' + error);
                 }
-                res.json({ message: 'Livro reservado!' });
+
+                livro.status = "E";
+                livro.locador = livro.reservado;
+
+                livro.save(function (error) {
+                    if (error) {
+                        res.send('Erro ao salvar: ' + error);
+                    }
+                    res.json({ message: 'Livro emprestado!' });
+                })
             })
-        })
+        } else {
+            Livro.findById(req.params.livro_id, function (error, livro) {
+                if (error) {
+                    res.send('Id do livro não encontrado:' + error);
+                }
+
+                livro.status = "R";
+                livro.reservado = req.body.usuario;
+
+                livro.save(function (error) {
+                    if (error) {
+                        res.send('Erro ao salvar: ' + error);
+                    }
+                    res.json({ message: 'Livro reservado!' });
+                })
+            })
+        }
     })
 
 router.route('/users')
