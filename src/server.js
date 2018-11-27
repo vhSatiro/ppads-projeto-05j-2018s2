@@ -4,6 +4,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var Livro = require('./app/models/livro');
+var User = require('./app/models/user');
 
 mongoose.connect('mongodb://vini123:vini123@ds159237.mlab.com:59237/node-bookstore', {
     useNewUrlParser: true
@@ -46,6 +47,7 @@ router.route('/livros')
         livro.ano = req.body.ano;
         livro.autor = req.body.autor;
         livro.status = req.body.status;
+        livro.reservado = "";
         livro.save(function (error) {
             if (error) {
                 res.send('Erro ao tentar salvar' + error);
@@ -117,15 +119,51 @@ router.route('/livros/:livro_id')
                 res.send('Id do livro não encontrado:' + error);
             }
             livro.status = "R";
-
+            livro.reservado = req.body.usuario;
             livro.save(function (error) {
-                if(error){
+                if (error) {
                     res.send('Erro ao salvar: ' + error);
                 }
-                res.json({message: 'Livro reservado!'});
+                res.json({ message: 'Livro reservado!' });
             })
         })
     })
+
+router.route('/users')
+    .post(function (req, res) {
+        var user = new User();
+
+        //Setar os campos do produto(via req)
+        user.nome = req.body.nome;
+        user.email = req.body.email;
+        user.senha = req.body.senha;
+        user.usuario = req.body.usuario;
+        user.admin = req.body.admin;
+        user.save(function (error) {
+            if (error) {
+                res.send('Erro ao tentar salvar' + error);
+            }
+            res.json({ message: 'Usuário cadastrado!' });
+        });
+    })
+
+router.route('/login')
+    .post(function (req, res) {
+        var usuario = req.body.usuario;
+        var senha = req.body.senha;
+        User.findOne({ usuario: usuario, senha: senha }, function (err, user) {
+            if (err) {
+                console.log(err);
+                return res.status(500).send();
+            }
+            if (!user) {
+                return res.status(404).send();
+
+            }
+            return res.status(200).send();
+        })
+    })
+
 app.use('/api', router);
 
 app.listen(port);

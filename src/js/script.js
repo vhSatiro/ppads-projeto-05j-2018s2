@@ -25,7 +25,21 @@ function requestMaker(type, url, callback) {
         error: function (e) {
             callback(e);
         }
+    });
+}
 
+function postRequestMaker(type, url, data, callback) {
+    $.ajax({
+        dataType: "json",
+        type: type,
+        url: url,
+        data: data,
+        success: function (data) {
+            callback(data);
+        },
+        error: function (e) {
+            callback(e);
+        }
     });
 }
 
@@ -60,7 +74,10 @@ function populateTable(data) {
         var $lastLine = $container.find('tr').last();
         $lastLine.find('button').on('click', function (event) {
             var id = $(this).parent().siblings('td.bookId').html();
-            requestMaker('PUT', urlGlobal + 'api/livros/' + id, function (res) { 
+            var data = {
+                usuario: sessionStorage.getItem("user")
+            }
+            postRequestMaker('PUT', urlGlobal + 'api/livros/' + id, data, function (res) {
                 console.log(res);
             })
         })
