@@ -12,6 +12,10 @@ $(document).ready(function (e) {
             populateTable(res);
         });
     });
+    $('#logoutButton').on('click', function (event) { 
+        sessionStorage.clear();
+        $(location).attr('href', '/');
+    });
 });
 
 function requestMaker(type, url, callback) {
@@ -66,7 +70,7 @@ function populateTable(data) {
             <td class="bookId" style="display:none;">'+ data[i]._id + '</td>\n\
             <td class="titulo">'+ data[i].titulo + '</td>\n\
             <td>'+ data[i].genero + '</td>\n\
-            <td>'+ data[i].descricao + '</td>\n\
+            <td>'+ data[i].autor + '</td>\n\
             <td>'+ data[i].ano + '</td>\n\
             <td>'+ botaoReservar + '</td>\n\
             <td class="reservado" style="display:none;">'+ data[i].reservado + '</td>\n\
@@ -79,24 +83,27 @@ function populateTable(data) {
                 usuario: sessionStorage.getItem("user")
             }
             postRequestMaker('PUT', urlGlobal + 'api/livros/' + id, data, function (res) {
-                console.log(res);
-            })
-        })
-        if (sessionStorage.getItem("user") == "admin" && data[i].status == "R") {
-            $lastLine.find(".reservar").html("Reservado para: " + data[i].reservado);
-            $lastLine.find(".reservar").css('cursor', 'pointer');
-            $lastLine.find(".reservar").on('click', function (event) {
-                var id = $(this).parent().siblings('td.bookId').html();
-                var data = {
-                    usuario: sessionStorage.getItem("user")
-                }
-                postRequestMaker('PUT', urlGlobal + 'api/livros/' + id, data, function (res) {
-                    debugger;
-                    if (res.status == 200) {
-                        $('#searchButton').click();
-                    }
-                })
+                $('#searchButton').click();
             });
+        });
+        if (sessionStorage.getItem("user") == "admin") {
+            if (data[i].status == "R") {
+                $lastLine.find(".reservar").html("Reservado para: " + data[i].reservado);
+                $lastLine.find(".reservar").css('cursor', 'pointer');
+                $lastLine.find(".reservar").on('click', function (event) {
+                    var id = $(this).parent().siblings('td.bookId').html();
+                    var data = {
+                        usuario: sessionStorage.getItem("user")
+                    }
+                    postRequestMaker('PUT', urlGlobal + 'api/livros/' + id, data, function (res) {
+                        if (res.status == 200) {
+                            $('#searchButton').click();
+                        }
+                    })
+                });
+            } else if (data[i].status == "D") {
+                $lastLine.find('button').remove();
+            }
         }
     }
 }

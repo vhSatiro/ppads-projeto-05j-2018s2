@@ -18,7 +18,7 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Methods", "PUT, POST");
     next();
 })
-var port = process.env.port || 8000;
+var port = process.env.port || 8080;
 
 //Rotas
 
