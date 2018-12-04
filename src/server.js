@@ -116,21 +116,41 @@ router.route('/livros/:livro_id')
     })
     .put(function (req, res) {
         if (req.body.usuario == "admin") {
-            Livro.findById(req.params.livro_id, function (error, livro) {
-                if (error) {
-                    res.send('Id do livro não encontrado:' + error);
-                }
-
-                livro.status = "E";
-                livro.locador = livro.reservado;
-
-                livro.save(function (error) {
+            if (req.body.status == "D") {
+                Livro.findById(req.params.livro_id, function (error, livro) {
                     if (error) {
-                        res.send('Erro ao salvar: ' + error);
+                        res.send('Id do livro não encontrado:' + error);
                     }
-                    res.status(200).send();
+                    
+                    livro.status = "D";
+                    livro.locador = "";
+                    livro.reservado = "";
+                    
+                    livro.save(function (error) {
+                        if (error) {
+                            res.send('Erro ao salvar: ' + error);
+                        }
+                        res.status(200).send();
+                    })
                 })
-            })
+            } else {
+                console.log("3");
+                Livro.findById(req.params.livro_id, function (error, livro) {
+                    if (error) {
+                        res.send('Id do livro não encontrado:' + error);
+                    }
+
+                    livro.status = "E";
+                    livro.locador = livro.reservado;
+
+                    livro.save(function (error) {
+                        if (error) {
+                            res.send('Erro ao salvar: ' + error);
+                        }
+                        res.status(200).send();
+                    })
+                })
+            }
         } else {
             Livro.findById(req.params.livro_id, function (error, livro) {
                 if (error) {
@@ -164,7 +184,7 @@ router.route('/users')
             if (error) {
                 res.send('Erro ao tentar salvar' + error);
             }
-            res.json({ message: 'Usuário cadastrado!' });
+            res.status(200).send();
         });
     })
 

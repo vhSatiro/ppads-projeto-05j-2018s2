@@ -1,5 +1,5 @@
 //Desenv
-//var urlGlobal = 'http://localhost:8000/'
+//var urlGlobal = 'http://localhost:8080/'
 //Prod
 var urlGlobal = 'http://35.196.242.0:8080/';
 
@@ -12,9 +12,15 @@ $(document).ready(function (e) {
             populateTable(res);
         });
     });
-    $('#logoutButton').on('click', function (event) { 
+    $('#logoutButton').on('click', function (event) {
         sessionStorage.clear();
         $(location).attr('href', '/');
+    });
+    $(document).keypress(function(e) {
+        var keycode = (e.keyCode ? e.keyCode : e.which);
+        if (keycode == '13') {
+            $('#searchButton').click();
+        }
     });
 });
 
@@ -56,7 +62,7 @@ function populateTable(data) {
                 botaoReservar = '<button type="button" class="btn btn-success">Reservar</button>';
                 break;
             case 'E':
-                botaoReservar = '<h6>Livro emprestado</h6>';
+                botaoReservar = '<h6 class="reservar">Livro emprestado, clique para devolução</h6>';
                 break;
             case 'R':
                 botaoReservar = '<h6 class="reservar">Livro reservado</h6>';
@@ -103,6 +109,20 @@ function populateTable(data) {
                 });
             } else if (data[i].status == "D") {
                 $lastLine.find('button').remove();
+            } else if (data[i].status == "E") {
+                $lastLine.find(".reservar").css('cursor', 'pointer');
+                $lastLine.find(".reservar").on('click', function (event) {
+                    var id = $(this).parent().siblings('td.bookId').html();
+                    var data = {
+                        status: "D",
+                        usuario: sessionStorage.getItem('user')
+                    }
+                    postRequestMaker('PUT', urlGlobal + 'api/livros/' + id, data, function (res) {
+                        if (res.status == 200) {
+                            $('#searchButton').click();
+                        }
+                    })
+                });
             }
         }
     }
