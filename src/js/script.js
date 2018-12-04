@@ -84,14 +84,17 @@ function populateTable(data) {
         })
         if (sessionStorage.getItem("user") == "admin" && data[i].status == "R") {
             $lastLine.find(".reservar").html("Reservado para: " + data[i].reservado);
-            $lastLine.find(".reservar").css('cursor','pointer');
+            $lastLine.find(".reservar").css('cursor', 'pointer');
             $lastLine.find(".reservar").on('click', function (event) {
                 var id = $(this).parent().siblings('td.bookId').html();
                 var data = {
                     usuario: sessionStorage.getItem("user")
                 }
                 postRequestMaker('PUT', urlGlobal + 'api/livros/' + id, data, function (res) {
-                    console.log(res);
+                    debugger;
+                    if (res.status == 200) {
+                        $('#searchButton').click();
+                    }
                 })
             });
         }

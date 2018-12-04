@@ -1,8 +1,8 @@
 $('#login').on('click', function (event) {
-    // var pass = $('[name="p"]').val();
-    // var user = $('[name="u"]').val();
-    var user = 'admin';
-    var pass = 'senha';
+    var pass = $('[name="p"]').val();
+    var user = $('[name="u"]').val();
+    // var user = 'admin';
+    // var pass = 'senha';
     // var user = 'teste123';
     // var pass = 'teste123';
 

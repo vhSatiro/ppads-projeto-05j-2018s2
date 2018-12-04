@@ -128,7 +128,7 @@ router.route('/livros/:livro_id')
                     if (error) {
                         res.send('Erro ao salvar: ' + error);
                     }
-                    res.json({ message: 'Livro emprestado!' });
+                    res.status(200).send();
                 })
             })
         } else {
@@ -144,7 +144,7 @@ router.route('/livros/:livro_id')
                     if (error) {
                         res.send('Erro ao salvar: ' + error);
                     }
-                    res.json({ message: 'Livro reservado!' });
+                    res.status(200).send();
                 })
             })
         }
