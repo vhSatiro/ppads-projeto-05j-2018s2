@@ -1,7 +1,7 @@
 //Desenv
-var urlGlobal = 'http://localhost:8000/'
+//var urlGlobal = 'http://localhost:8000/'
 //Prod
-//var urlGlobal = 'http://35.196.242.0:8000/';
+var urlGlobal = 'http://35.196.242.0:8080/';
 
 $(document).ready(function (e) {
     $('#searchButton').on('click', function (event) {
